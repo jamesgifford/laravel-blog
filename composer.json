@@ -1,0 +1,21 @@
+{
+    "name": "jamesgifford/laravel-blog",
+    "description": "A blog package for Laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "James Gifford",
+            "email": "jg.webdeveloper@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.6.4",
+        "illuminate/support": "5.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "jamesgifford\\laravel-blog\\": "src/"
+        }
+    },
+}
