@@ -1,6 +1,6 @@
 <?php
 
-namespace JamesGifford\Blog;
+namespace JamesGifford\Blog\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +13,11 @@ class BlogServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        include __DIR__.'/routes.php';
+        $packageSrcDir = dirname(__DIR__);
+
+        $this->loadMigrationsFrom($packageSrcDir.'/Migrations');
+        $this->loadRoutesFrom($packageSrcDir.'/Routes/web.php');
+        $this->loadViewsFrom($packageSrcDir.'/Views', 'blog');
     }
 
     /**
@@ -23,7 +27,6 @@ class BlogServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->make('JamesGifford\Blog\BlogController');
-        $this->loadViewsFrom(__DIR__.'/views', 'blog');
+        $this->app->make('JamesGifford\Blog\Controllers\BlogController');
     }
 }
