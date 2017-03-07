@@ -15,17 +15,30 @@ class Blog implements BlogContract
      */
     public function post($slug)
     {
-        return Post::published()->where('slug', $slug)->first();
+        $slug = strtolower($slug);
+
+        return Post::live()->where('slug', $slug)->first();
     }
 
     /**
      * Get some of the most recent posts
      * 
      * @param   int  $quantity   the number of recent posts
-     * @return  \Illuminate\Database\Eloquent\Collection
+     * @return  \Illuminate\Pagination\LengthAwarePaginator
      */
     public function recent($quantity = 3)
     {
-        return Post::published()->orderBy('created_at', 'desc')->take($quantity)->get();
+        return Post::live()->orderBy('created_at', 'desc')->paginate($quantity);
+    }
+
+    /**
+     * Get some of the most recent featured posts
+     * 
+     * @param   int  $quantity   the number of recent posts
+     * @return  \Illuminate\Database\Eloquent\Collection
+     */
+    public function featured($quantity = 3)
+    {
+        return Post::live()->featured()->orderBy('created_at', 'desc')->take($quantity)->get();
     }
 }

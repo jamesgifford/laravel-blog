@@ -19,7 +19,9 @@ class CreateBlogPostsTable extends Migration
             $table->string('title');
             $table->text('body');
             $table->string('slug')->unique();
-            $table->boolean('is_published');
+            $table->boolean('is_active');
+            $table->boolean('is_featured');
+            $table->timestamp('published_at');
             $table->timestamps();
         });
     }
