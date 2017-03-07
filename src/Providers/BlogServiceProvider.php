@@ -27,6 +27,10 @@ class BlogServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind('blog', function ($app) {
+            return new \JamesGifford\Blog\Blog;
+        });
+
         $this->app->make('JamesGifford\Blog\Controllers\BlogController');
     }
 }
