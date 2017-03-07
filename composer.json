@@ -1,6 +1,7 @@
 {
     "name": "jamesgifford/laravel-blog",
     "description": "A blog package for Laravel",
+    "keywords": ["laravel", "blog"],
     "license": "MIT",
     "authors": [
         {
