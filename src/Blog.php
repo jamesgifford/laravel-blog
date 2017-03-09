@@ -11,34 +11,40 @@ class Blog implements BlogContract
      * Get a single blog post by its slug value
      * 
      * @param   string  $slug   the slug value
-     * @return  \JamesGifford\Blog\Models\Post
+     * @return  \Illuminate\View\View
      */
     public function post($slug)
     {
         $slug = strtolower($slug);
 
-        return Post::live()->where('slug', $slug)->first();
+        $post = Post::live()->where('slug', $slug)->first();
+
+        return view('blog::post')->with('post', $post);
     }
 
     /**
      * Get some of the most recent posts
      * 
      * @param   int  $quantity   the number of recent posts
-     * @return  \Illuminate\Pagination\LengthAwarePaginator
+     * @return  \Illuminate\View\View
      */
     public function recent($quantity = 3)
     {
-        return Post::live()->orderBy('created_at', 'desc')->paginate($quantity);
+        $posts = Post::live()->orderBy('created_at', 'desc')->paginate($quantity);
+
+        return view('blog::posts')->with('posts', $posts);
     }
 
     /**
      * Get some of the most recent featured posts
      * 
      * @param   int  $quantity   the number of recent posts
-     * @return  \Illuminate\Database\Eloquent\Collection
+     * @return  \Illuminate\View\View
      */
     public function featured($quantity = 3)
     {
-        return Post::live()->featured()->orderBy('created_at', 'desc')->take($quantity)->get();
+        $posts = Post::live()->featured()->orderBy('created_at', 'desc')->take($quantity)->get();
+        
+        return view('blog::posts')->with('posts', $posts);
     }
 }

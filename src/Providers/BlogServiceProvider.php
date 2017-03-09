@@ -18,6 +18,10 @@ class BlogServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom($packageSrcDir.'/Migrations');
         $this->loadRoutesFrom($packageSrcDir.'/Routes/web.php');
         $this->loadViewsFrom($packageSrcDir.'/Views', 'blog');
+
+        $this->publishes([
+            $packageSrcDir.'/Views' => resource_path('views/vendor/blog')
+        ]);
     }
 
     /**
