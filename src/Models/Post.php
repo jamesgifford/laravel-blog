@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     /**
-     * Set the table name used for posts
+     * Set the table name used for posts.
      */
     protected $table = 'blog_posts';
 
     /**
-     * Scope a query to only include active posts
+     * Scope a query to only include active posts.
      *
      * @param    \Illuminate\Database\Eloquent\Builder   $query
      * @return   \Illuminate\Database\Eloquent\Builder
@@ -23,7 +23,7 @@ class Post extends Model
     }
 
     /**
-     * Scope a query to only include inactive (draft) posts
+     * Scope a query to only include inactive (draft) posts.
      *
      * @param    \Illuminate\Database\Eloquent\Builder   $query
      * @return   \Illuminate\Database\Eloquent\Builder
@@ -34,7 +34,7 @@ class Post extends Model
     }
 
     /**
-     * Scope a query to only include featured posts
+     * Scope a query to only include featured posts.
      *
      * @param    \Illuminate\Database\Eloquent\Builder   $query
      * @return   \Illuminate\Database\Eloquent\Builder
@@ -45,7 +45,7 @@ class Post extends Model
     }
 
     /**
-     * Scope a query to only include non-featured posts
+     * Scope a query to only include non-featured posts.
      *
      * @param    \Illuminate\Database\Eloquent\Builder   $query
      * @return   \Illuminate\Database\Eloquent\Builder
@@ -56,7 +56,7 @@ class Post extends Model
     }
 
     /**
-     * Scope a query to only include published posts
+     * Scope a query to only include published posts.
      *
      * @param    \Illuminate\Database\Eloquent\Builder   $query
      * @return   \Illuminate\Database\Eloquent\Builder
@@ -67,7 +67,7 @@ class Post extends Model
     }
 
     /**
-     * Scope a query to only include unpublished posts
+     * Scope a query to only include unpublished posts.
      *
      * @param    \Illuminate\Database\Eloquent\Builder   $query
      * @return   \Illuminate\Database\Eloquent\Builder
@@ -78,7 +78,7 @@ class Post extends Model
     }
 
     /**
-     * Scope a query to only include active and published posts
+     * Scope a query to only include active and published posts.
      *
      * @param    \Illuminate\Database\Eloquent\Builder   $query
      * @return   \Illuminate\Database\Eloquent\Builder

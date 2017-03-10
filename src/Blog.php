@@ -2,13 +2,13 @@
 
 namespace JamesGifford\Blog;
 
-use JamesGifford\Blog\Contracts\Blog as BlogContract;
-use JamesGifford\Blog\Models\Post;
+use JamesGifford\Blog\Contracts\BlogContract;
+use JamesGifford\Blog\Repositories\PostRepositoryDB as PostRepository;
 
 class Blog implements BlogContract
 {
     /**
-     * Get a single blog post by its slug value
+     * Get a single blog post by its slug value.
      * 
      * @param   string  $slug   the slug value
      * @return  \Illuminate\View\View
@@ -17,34 +17,28 @@ class Blog implements BlogContract
     {
         $slug = strtolower($slug);
 
-        $post = Post::live()->where('slug', $slug)->first();
-
-        return view('blog::post')->with('post', $post);
+        return (new PostRepository())->post($slug);
     }
 
     /**
-     * Get some of the most recent posts
+     * Get some of the most recent posts.
      * 
      * @param   int  $quantity   the number of recent posts
      * @return  \Illuminate\View\View
      */
     public function recent($quantity = 3)
     {
-        $posts = Post::live()->orderBy('created_at', 'desc')->paginate($quantity);
-
-        return view('blog::posts')->with('posts', $posts);
+        return (new PostRepository())->recent($quantity);
     }
 
     /**
-     * Get some of the most recent featured posts
+     * Get some of the most recent featured posts.
      * 
      * @param   int  $quantity   the number of recent posts
-     * @return  \Illuminate\View\View
+     * @return  \JamesGifford\Blog\Repositories\PostRepository
      */
     public function featured($quantity = 3)
     {
-        $posts = Post::live()->featured()->orderBy('created_at', 'desc')->take($quantity)->get();
-        
-        return view('blog::posts')->with('posts', $posts);
+        return (new PostRepository())->featured($quantity);
     }
 }

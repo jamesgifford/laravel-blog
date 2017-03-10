@@ -9,7 +9,7 @@ use JamesGifford\Blog\Models\BlogPost;
 class BlogController extends Controller
 {
     /**
-     * Display the blog home page
+     * Display the blog home page.
      */
     public function home()
     {
@@ -17,7 +17,8 @@ class BlogController extends Controller
     }
 
     /**
-     * Display a single blog post
+     * Display a single blog post.
+     * 
      * @param   string  $slug   the slug value of the post
      */
     public function post($slug)
